@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getNIT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vNIT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Entity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Requestor" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getNITResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getNITResult" type="tns:respuesta" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="respuesta">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Request" type="tns:request" />
+          <s:element minOccurs="0" maxOccurs="1" name="Response" type="tns:datos" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="request">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="NIT" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="datos">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Result" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="NIT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="error" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="respuesta" nillable="true" type="tns:respuesta" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getNITSoapIn">
+    <wsdl:part name="parameters" element="tns:getNIT" />
+  </wsdl:message>
+  <wsdl:message name="getNITSoapOut">
+    <wsdl:part name="parameters" element="tns:getNITResponse" />
+  </wsdl:message>
+  <wsdl:message name="getNITHttpGetIn">
+    <wsdl:part name="vNIT" type="s:string" />
+    <wsdl:part name="Entity" type="s:string" />
+    <wsdl:part name="Requestor" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getNITHttpGetOut">
+    <wsdl:part name="Body" element="tns:respuesta" />
+  </wsdl:message>
+  <wsdl:message name="getNITHttpPostIn">
+    <wsdl:part name="vNIT" type="s:string" />
+    <wsdl:part name="Entity" type="s:string" />
+    <wsdl:part name="Requestor" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="getNITHttpPostOut">
+    <wsdl:part name="Body" element="tns:respuesta" />
+  </wsdl:message>
+  <wsdl:portType name="ConsultaNITSoap">
+    <wsdl:operation name="getNIT">
+      <wsdl:input message="tns:getNITSoapIn" />
+      <wsdl:output message="tns:getNITSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConsultaNITHttpGet">
+    <wsdl:operation name="getNIT">
+      <wsdl:input message="tns:getNITHttpGetIn" />
+      <wsdl:output message="tns:getNITHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ConsultaNITHttpPost">
+    <wsdl:operation name="getNIT">
+      <wsdl:input message="tns:getNITHttpPostIn" />
+      <wsdl:output message="tns:getNITHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultaNITSoap" type="tns:ConsultaNITSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getNIT">
+      <soap:operation soapAction="http://tempuri.org/getNIT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaNITSoap12" type="tns:ConsultaNITSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getNIT">
+      <soap12:operation soapAction="http://tempuri.org/getNIT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaNITHttpGet" type="tns:ConsultaNITHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="getNIT">
+      <http:operation location="/getNIT" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsultaNITHttpPost" type="tns:ConsultaNITHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="getNIT">
+      <http:operation location="/getNIT" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultaNIT">
+    <wsdl:port name="ConsultaNITSoap" binding="tns:ConsultaNITSoap">
+      <soap:address location="https://pruebasfel.g4sdocumenta.com/ConsultaNIT/ConsultaNIT.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaNITSoap12" binding="tns:ConsultaNITSoap12">
+      <soap12:address location="https://pruebasfel.g4sdocumenta.com/ConsultaNIT/ConsultaNIT.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaNITHttpGet" binding="tns:ConsultaNITHttpGet">
+      <http:address location="https://pruebasfel.g4sdocumenta.com/ConsultaNIT/ConsultaNIT.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsultaNITHttpPost" binding="tns:ConsultaNITHttpPost">
+      <http:address location="https://pruebasfel.g4sdocumenta.com/ConsultaNIT/ConsultaNIT.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

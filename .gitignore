@@ -1,0 +1,213 @@
+###############################################################################
+# .gitignore - identificadores_de_contribuyentes
+# ASP.NET Web Forms / .NET Framework 4.7.2 / Visual Studio
+###############################################################################
+
+###############################################################################
+# 1. SECRETOS Y CONFIGURACION SENSIBLE  (lo mas importante)
+###############################################################################
+# Web.config contiene credenciales de los web services (Entity, REQUESTOR,
+# User, UserName). Lo correcto es NO subirlo y publicar solo una plantilla
+# Web.config.example / Web.config.template con los valores en blanco.
+Web.config
+*.config.local
+Web.*.config.local
+
+# Archivos de configuracion externalizada con secretos.
+# (usar <appSettings configSource="AppSettings.secrets.config" /> en Web.config)
+AppSettings.secrets.config
+ConnectionStrings.config
+ConnectionStrings.secrets.config
+*.secrets.config
+secrets.json
+appsettings.*.local.json
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Certificados, llaves y credenciales
+*.pfx
+*.p12
+*.key
+*.pem
+*.cer
+*.crt
+*.snk
+*.jks
+*.keystore
+credentials.*
+*credentials.json
+
+# Perfiles de publicacion: pueden incluir usuario/password del servidor destino
+*.pubxml.user
+*.publishproj
+PublishProfiles/*.user
+PublishScripts/
+publish/
+
+# Transformaciones con datos de servidores reales
+Web.Production.config
+Web.Prod.config
+Web.QA.config
+Web.Staging.config
+
+###############################################################################
+# 2. Excepciones: plantillas SI se suben
+###############################################################################
+!Web.config.example
+!Web.config.template
+!AppSettings.secrets.config.example
+
+###############################################################################
+# 3. Resultados de compilacion
+###############################################################################
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]uild/
+[Ll]og/
+[Ll]ogs/
+Logs/
+[Oo]ut/
+artifacts/
+
+*.dll
+*.exe
+*.pdb
+*.ilk
+*.obj
+*.tlb
+*.tlh
+*.tli
+*.tmp
+*.tmp_proj
+*.cache
+*.meta
+*_i.c
+*_p.c
+*_wpftmp.csproj
+
+###############################################################################
+# 4. NuGet (packages.config) - se restauran con "nuget restore"
+###############################################################################
+packages/
+!packages/build/
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+###############################################################################
+# 5. Visual Studio - archivos de usuario y cache local
+###############################################################################
+.vs/
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.iml
+*.userprefs
+*.csproj.user
+*.dbmdl
+*.dbproj.schemaview
+*.jfm
+*.VisualState.xml
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
+ipch/
+_UpgradeReport_Files/
+UpgradeLog*.XML
+UpgradeLog*.htm
+Backup*/
+MigrationBackup/
+ClientBin/
+~$*
+*~
+*.dbmdl
+
+###############################################################################
+# 6. IIS / IIS Express
+###############################################################################
+.iisexpress/
+iisexpress/
+*.vsidx
+$tf/
+App_Data/*.mdf
+App_Data/*.ldf
+App_Data/*.sdf
+App_Data/*.db
+App_Data/*.sqlite
+App_Data/*.log
+App_Data/aspnet-*
+
+###############################################################################
+# 7. Logs y volcados de la aplicacion (pueden contener CUI/NIT y datos personales)
+###############################################################################
+*.log
+*.dmp
+*.mdmp
+Logs/*
+!Logs/.gitkeep
+
+###############################################################################
+# 8. Pruebas y analisis
+###############################################################################
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.trx
+*.coverage
+*.coveragexml
+*.VisualState.xml
+TestResult.xml
+coverage*.json
+coverage*.xml
+
+###############################################################################
+# 9. Sistema operativo
+###############################################################################
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+###############################################################################
+# 10. Archivos comprimidos / respaldos
+###############################################################################
+*.zip
+*.rar
+*.7z
+*.bak
+*.backup
+*.old
+*.orig
+*.swp
